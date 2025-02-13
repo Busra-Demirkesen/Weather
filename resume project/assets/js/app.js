@@ -7,6 +7,18 @@ const digitRegex = /^\d+$/;
 
 
 const mainForm = document.getElementById('cv-form');
+const validType = {
+  TEXT: 'text',
+  TEXT_EMP: 'text_emp',
+  EMAIL: 'email',
+  DIGIT: 'digit',
+  PHONENO: 'phoneno',
+  ANY: 'any',
+
+}
+
+
+
 let firstnameElem = mainForm.firstname;
 let middlenameElem = mainForm.middlename;
 let lastnameElem = mainForm.lastname;
@@ -79,13 +91,18 @@ const getUserInputs = () => {
 
 //Projects
 
-  let projItemElem = document.querySelectorAll('.proj_title');
+  let projTitleElem = document.querySelectorAll('.proj_title');
   let projLinkElem = document.querySelectorAll('.proj_link');
   let projDescriptionElem = document.querySelectorAll('.proj_description');
 
   //Skills
 
   let skillElem = document.querySelectorAll('.skill');
+
+
+  // Event Listeners for form validation
+
+
 
 
   return{
@@ -98,20 +115,55 @@ const getUserInputs = () => {
     email: emailElem.value,
     phoneno: phonenoElem.value,
     summary: summaryElem.value,
-    achievements: fetchValues(['.achieve_title', '.achieve_description'], achievementsTitleElem, achievementsDescriptionElem),
+    achievements: fetchValues(['achieve_title', 'achieve_description'], achievementsTitleElem, achievementsDescriptionElem),
 
-    experiences: fetchValues(['.exp_title', '.exp_organization','.exp_location','.exp_start_date','.exp_end_date','.exp_description'],
+    experiences: fetchValues(['exp_title', 'exp_organization','exp_location','exp_start_date','exp_end_date','exp_description'],
       expTitleElem,expOrganizationElem,expLocationElem,expStartDateElem,expEndDateElem,expDescriptionElem),
-      educations: fetchValues(['.edu_school', '.edu_degree', '.edu_city', '.edu_start_date', '.edu_graduation_date', '.edu_description'],
+      educations: fetchValues(['edu_school', 'edu_degree', 'edu_city', 'edu_start_date', 'edu_graduation_date', 'edu_description'],
         eduSchoolElem, eduDegreeElem, eduCityElem, eduStartDateElem, eduGraduationDateElem, eduDescriptionElem),
+        projects: fetchValues(['proj_title','proj_link','proj_description'],projTitleElem, projLinkElem,projDescriptionElem),
+        skills: fetchValues(['skills'], skillElem)
+          
+    
 
 
       
 
   }
+};
+
+
+function validateFormData(elem, elemType, elemName) {
+  // Checking for text string and non-empty string
+  if (elemType == validType.TEXT) {
+    if (!strRegex.test(elem.value) || elem.value.trim().length == 0) {
+      addErrMsg(elem, elemName);
+    } else {
+      removeErrMsg(elem);
+    }
+  }
+
+
+
+
+  
 }
 
 
+
+//Adding the invalid text
+function addErrMsg(formElem,formElemName){
+  formElem.nextElementSibling.innerHTML = `${formElemName} is invalid`;
+}
+
+
+//Remove the invalid text
+function removeErrMsg(formElem){
+  formElem.nextElementSibling.innerHTML = '';
+}
+
+
+//Generate CV
 const generateCV = () => {
   let userData = getUserInputs();
   console.log(userData);
