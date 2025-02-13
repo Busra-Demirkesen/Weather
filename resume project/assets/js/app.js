@@ -151,7 +151,7 @@ function validateFormData(elem, elemType, elemName) {
 
 
 function addErrMsg(formElem,formElemName){
-  formElem.nextElementSibling.innerHTML = `${formElemName} is invalid`;
+ 
 }
 
 
