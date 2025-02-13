@@ -1,0 +1,42 @@
+/* Ürün kartının temel stili */
+.product {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px; /* Ürün kartının genişliği */
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+
+/* Ürün resminin boyutunu ayarlama */
+.product img {
+  max-width: 100%; /* Resim, kartın boyutuna uysun */
+  height: auto; /* Orantılı şekilde yüksekliği ayarla */
+  border-radius: 8px; /* Kenarlarını yuvarla */
+  object-fit: cover; /* Görselin tam görünmesini sağla */
+}
+
+/* Ürün adı ve fiyat yazısının stili */
+.product h3 {
+  font-size: 18px;
+  color: #333;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.product p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Fiyat bilgisini vurgulama */
+.product p strong {
+  color: #e74c3c;
+  font-size: 16px;
+  font-weight: bold;
+}
