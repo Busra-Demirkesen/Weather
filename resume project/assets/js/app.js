@@ -77,6 +77,9 @@ const getUserInputs = () => {
   let eduDescriptionElem = document.querySelectorAll('.edu_description');
 
 
+
+  let projItemElem = document.querySelectorAll('.proj_title');
+
   return{
     firstname: firstnameElem.value,
     middlename: middlenameElem.value,
